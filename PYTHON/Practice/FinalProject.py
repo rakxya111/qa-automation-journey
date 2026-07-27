@@ -156,6 +156,7 @@ def save_to_json():
 def load_from_json():
     try:
         with open('employees.json','r') as file:
+            # Read the JSON and convert it into Python data.
             data = json.load(file)
 
         employees.clear()
