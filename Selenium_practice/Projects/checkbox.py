@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,9 +6,12 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 url = 'https://testing.qaautomationlabs.com/checkbox.php'
-browser = webdriver.Chrome()
+browser = WebDriverWait.Chrome()
 browser.get(url)
+
+# Wait up to 10 seconds until the username field becomes visible.
 wait = WebDriverWait(browser, 10)
+
 browser.maximize_window()
 
 # browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -19,7 +21,7 @@ checkboxes = wait.until(
     (
         (By.XPATH,"//input[@type='checkbox']")
     )
-    )
+        )
 
 for checkbox in checkboxes:
     browser.execute_script("arguments[0].scrollIntoView();", checkbox)
