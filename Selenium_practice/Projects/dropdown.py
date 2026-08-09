@@ -19,8 +19,6 @@ dropdown_element = wait.until(
 select = Select(dropdown_element)
 
 # select.select_by_index(1)
-
 select.select_by_value('Apple')
-
 
 input('Click eneter to stop')
