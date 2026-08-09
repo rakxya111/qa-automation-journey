@@ -1,0 +1,28 @@
+# NOTES
+
+## Always prefer id , css and then after all of this if you still cannot find the id and css then only use the Xpath.
+
+## visibility_of_all_elements_located -> Find the elements AND make sure they're visible.
+
+## presence_of_all_elements_located -> Just make sure the elements exist in the page.
+
+
+
+Syntax : assert <condition>
+
+Think of assert as a checkpoint.
+
+It asks:
+
+"Is this condition true?"
+
+✅ If yes, the test continues.
+❌ If no, the test immediately fails with an AssertionError.
+
+Its syntax is:
+
+assert condition
+
+or
+
+assert condition, "Custom error message"

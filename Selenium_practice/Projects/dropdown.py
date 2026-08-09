@@ -7,7 +7,7 @@ url = 'https://testing.qaautomationlabs.com/dropdown.php'
 browser = webdriver.Chrome()
 browser.get(url)
 browser.maximize_window()
-
+browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 wait = WebDriverWait(browser , 10)
 
 dropdown_element = wait.until(
@@ -17,8 +17,17 @@ dropdown_element = wait.until(
 )
 
 select = Select(dropdown_element)
+target_value = 'Mango'
+
+for option in select.options:
+    if option.text == target_value:
+        option.click()
+        print(f'Selected option is {target_value}')
+        break
+    else:
+        print(f'{target_value} not found')
 
 # select.select_by_index(1)
-select.select_by_value('Apple')
+# select.select_by_value('Apple')
 
-input('Click eneter to stop')
+input('Click enter to stop')
