@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import time 
 
 
-url = 'https://www.globalsqa.com/demo-site/datepicker/'
+url = 'https://demo.automationtesting.in/Datepicker.html'
 browser = webdriver.Chrome()
 browser.maximize_window()
 browser.get(url)
@@ -22,25 +22,29 @@ datepicker.click()
 current_date = datetime.now()
 future_date = current_date + timedelta(days=1)
 
+future_month = future_date.month
+future_year = future_date.year
+future_day = str(future_date.day)
 
-Next_day = str((future_date.day))
-current_month = datetime.now().month
-current_year = current_date.year
+month_year = f"{future_month}/{future_year}"
 
-next_month = (current_month % 12) + 1
-next_month_and_year = f'{next_month} / {current_year}'
+change_month = browser.find_element(
+    By.CSS_SELECTOR,
+    "select[title='Change the month']"
+)
+select_month = Select(change_month)
+select_month.select_by_value(month_year)
 
 
-# Select the Month
-Month_dropdown = browser.find_element(By.CSS_SELECTOR, "select[title='Change the month']")
-select = Select(Month_dropdown)
-select.select_by_value(next_month_and_year)
+change_year = browser.find_element(
+    By.CSS_SELECTOR,
+    "select[title='Change the year']"
+)
+select_year = Select(change_year)
+select_year.select_by_visible_text(str(future_year))
 
-# Select the Year
-Year_dropdown = browser.find_element(By.CSS_SELECTOR, "select[title='Change the year']")
-select = Select(Year_dropdown)
-select.select_by_visible_text("2025")
 
-browser.find_element(By.LINK_TEXT, Next_day).click()
-
+browser.find_element(By.LINK_TEXT, future_day).click()
 time.sleep(5)
+
+browser.quit()
