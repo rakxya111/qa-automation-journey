@@ -50,3 +50,16 @@ for row in sheet.iter_rows(min_row=2,max_row=sheet.max_row,values_only=True):
 driver.quit()
 
 
+
+
+
+"""
+min_row = 2 : means start reading from row 2 as row 1 contains heading.
+
+sheet.iter_rows : means Go through the Excel sheet row by row.
+
+min_row=2, max_row=sheet.max_row : Start at row 2 and continue until the last row.
+
+values_only=True : Give me the actual values inside the cells, not the Excel cell objects.
+
+"""
