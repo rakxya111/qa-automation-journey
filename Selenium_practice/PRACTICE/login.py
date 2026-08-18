@@ -1,55 +1,92 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import csv
 import time
 
 
-url = 'https://nso-app.danfesolution.com/login'
-browser = webdriver.Chrome()
-browser.maximize_window()
-browser.get(url)
-wait = WebDriverWait(browser, 10)
+# Handling the CSV File
+csv_file = 'Practice/Book.csv'
+test_data = []
+
+with open(csv_file, 'r') as file:
+    reader = csv.DictReader(file) 
+
+    for row in reader:
+        test_data.append(row)
 
 
-# Login
+for data in test_data:
 
-username = wait.until(
-    EC.visibility_of_element_located(
-        (By.ID,"usernameOrEmail")
+    url = 'https://nso-app.danfesolution.com/login'
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    wait = WebDriverWait(driver, 10)
+    driver.get(url)
+
+
+    username_field = wait.until(
+        EC.visibility_of_element_located((By.ID, "usernameOrEmail"))
     )
-)
-
-username.send_keys('admin')
+    username_field.send_keys(data['username'])
 
 
-password = wait.until(
-    EC.visibility_of_element_located(
-        (By.ID,"password")
+    password_field = wait.until(
+        EC.visibility_of_element_located((By.ID, "password"))
     )
-)
-
-password.send_keys('Admin@123')
+    password_field.send_keys(data["password"])
 
 
-click_login = wait.until(
-    EC.element_to_be_clickable(
-        (By.CSS_SELECTOR,"button[type='submit']")
+    login_button = wait.until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "//button[normalize-space()='Sign In']")
+        )
     )
-)
-
-click_login.click()
+    login_button.click()
 
 
-dashboard = wait.until(
-    EC.visibility_of_element_located(
-        (By.CSS_SELECTOR,".countit-page-title")
-    )
-)
+    if data['expected'] == 'sucess':
 
-assert dashboard.text == "Today at Pashmina" , 'Unsucessful Automation'
-print('Sucessfull Automation.')
+        dashboard = wait.until(
+        EC.visibility_of_element_located(
+            (By.XPATH, "//h4[normalize-space()='Dashboard']")
+        ))
+
+        assert dashboard.text == "Dashboard" 
+
+    elif data['expected'] == 'error':
+        error = wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH,"//div[@role='alert']")
+            )
+        )
+
+        assert error.is_displayed()
+
+    elif data['expected'] == 'validation':
+        username_error = wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH,"//div[normalize-space()='Username or email is required']")
+            )
+        )
+
+        password_error = wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH,"//div[normalize-space()='Password is required']")
+            )
+        )
+
+        assert username_error.is_displayed()
+        assert password_error.is_displayed()
 
 
-browser.quit()
+
+input('End of script reached : Press enter to exit')
+
+driver.quit()
+
+
+
+
 

@@ -1,0 +1,7 @@
+﻿Username,Password,Expected
+admin,Admin@123,success
+wronguser,Admin@123,error
+admin,wrongpass,error
+wronguser,wrongpass,error
+,Admin@123,validation
+admin,,validation
