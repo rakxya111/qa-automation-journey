@@ -1,5 +1,5 @@
 # NOTES
-
+###################################
 ## NOTE :
 Always prefer id , css and then after all of this if you still cannot find the id and css then only use the Xpath.
 
@@ -8,11 +8,12 @@ Always prefer id , css and then after all of this if you still cannot find the i
 
 ## presence_of_all_elements_located :
 -> Just make sure the elements exist in the page.
+###################################
 
 
 
+###################################
 ## ASSERTION
-
 
 Syntax : assert <condition>
 
@@ -32,9 +33,12 @@ assert condition
 or
 
 assert condition, "Custom error message"
+###################################
 
 
 
+
+###################################
 ## IMPLICIT WAIT
 
 . Selenium has a built-in way to automatically wait for elements called an implicit wait.
@@ -42,5 +46,12 @@ assert condition, "Custom error message"
 . This is a global setting that applies to every element location call for the entire session.
 . The default value is 0, which means that if the element is not found, it will immediately return an error.
 . If an implicit wait is set, the driver will wait for the duration of the provided value before returning the error.
+###################################
 
 
+
+###################################
+In console to verify the element is selected in case of no selectors hub:
+$x(relative xpath)
+$(css path)
+####################################
