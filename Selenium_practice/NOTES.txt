@@ -55,3 +55,37 @@ In console to verify the element is selected in case of no selectors hub:
 $x(relative xpath)
 $(css path)
 ####################################
+
+
+
+####################################
+
+PYTEST:
+
+-> Pytest file should always start with test_ or end with _test
+
+-> Methods name should always start with test_
+
+-> Any code should be wrapped up in method.
+
+######################################
+
+COMMANDS IN PYTEST:
+
+-> py.test -v -s   (shows detailed information about each test (name + PASS/FAIL).)
+
+-> py.test -v -s  (Same as above + shows print() output from your tests.)
+
+-> py.test <file name> -v -s (Run for specific file only)
+-> E.g py.test test_demo1.py -v -s 
+
+-> py.test -k <module name> -v -s (Selected Module Test Case )
+->E.g  py.test -k CreditCard -v -s 
+
+
+-k stands for method names execution, 
+-s logs in out put -v stands for more info metadata
+Note: you can run specific file with py.test <filename> 
+
+
+#######################################
