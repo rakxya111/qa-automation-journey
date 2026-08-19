@@ -6,7 +6,7 @@ import time
 import json
 
 
-json_file = 'Projects/data.json'
+json_file = 'BASICS_PRACTICE/data.json'
 
 test_data = []
 with open(json_file , 'r') as file:

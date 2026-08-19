@@ -6,7 +6,7 @@ import time
 import csv
 
 
-csv_file = 'Projects/dataa.csv'
+csv_file = 'BASICS_PRACTICE/dataa.csv'
 
 test_data = []
 

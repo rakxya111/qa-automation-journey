@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 import time
 
 # Load excel Sheet
-workbook = load_workbook('Projects/data.xlsx')
+workbook = load_workbook('BASICS_PRACTICE/data.xlsx')
 
 # Selecting Active Sheet
 sheet = workbook.active
