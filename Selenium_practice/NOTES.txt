@@ -1,7 +1,7 @@
 # NOTES
 ###################################
-## NOTE :
-Always prefer id , css and then after all of this if you still cannot find the id and css then only use the Xpath.
+
+# Note: Always prefer id , css and then after all of this if you still cannot find the id and css then only use the Xpath.
 
 ## visibility_of_all_elements_located : 
 -> Find the elements AND make sure they're visible.
@@ -72,20 +72,44 @@ PYTEST:
 
 COMMANDS IN PYTEST:
 
--> py.test -v -s   (shows detailed information about each test (name + PASS/FAIL).)
+# py.test -v -s   (shows detailed information about each test (name + PASS/FAIL).)
 
--> py.test -v -s  (Same as above + shows print() output from your tests.)
+# py.test -s  (Same as above + shows print() output from your tests.)
 
--> py.test <file name> -v -s (Run for specific file only)
--> E.g py.test test_demo1.py -v -s 
+# py.test <file name> -v -s (Run for specific file only)
+# E.g py.test test_demo1.py -v -s 
 
--> py.test -k <module name> -v -s (Selected Module Test Case )
-->E.g  py.test -k CreditCard -v -s 
+# Prefer This over smoke one :
+# py.test -k <module name> -v -s (Selected Module Test Case )
+# E.g  py.test -k CreditCard -v -s 
 
 
--k stands for method names execution, 
--s logs in out put -v stands for more info metadata
-Note: you can run specific file with py.test <filename> 
+# -k stands for method names execution, 
+# -s logs in out put -v stands for more info metadata
+# Note: you can run specific file with py.test <filename> 
 
+
+# you can run specific file with py.test <filename>
+
+# @pytest.mark.smoke:  is used to group related tests so you can run only those tests when needed.
+## E.g. pytest -m smoke
+
+# you can skip tests with : @pytest.mark.skip
+
+
+# Running but not reporting such as pass or fail : @pytest.mark.xfail
+
+
+# In pytest, a fixture is a function that prepares something your test needs before the test runs.
+# Fixture: A function used to provide setup and cleanup for tests.
+## Created using @pytest.fixture().
+
+# yield = pause fixture, let the test run, then continue with cleanup.
+
+
+# Basically the fixture is used to invoke the browser or some configuration properties while the yield to exit the browser or delete the cookies at the end.
+
+
+# Conftest -: Only add a particular function with fixture when multiple files will share that particular function.
 
 #######################################
